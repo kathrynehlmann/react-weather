@@ -20,6 +20,39 @@ var Weather = React.createClass({
     }
   },
 
+  //Called before the render method is executed
+  componentWillMount: function() {
+
+    //Get the query string data
+    query = location.search.split('=')[1];
+
+    //Figure out if we need to display more than one city's weather
+    if (query !== undefined) {
+      cities = query.split(','); //Get an array of city names
+
+      //set the interval to load new cities
+      if (cities.length > 1) {
+        setInterval((function() {
+          currentCity++;
+          if (currentCity === cities.length) {
+            currentCity = 0;
+          }
+          this.fetchData(); //Reload the city every five seconds
+        }).bind(this), 5000);
+      }
+    }
+    else {
+      cities[0] = 'Denver'; //Set Denver as the default city
+    }
+
+    //Create a time to clear the cache after five minutes, so we can get updated data from the API
+    setInterval(function() {
+      citiesWeather = []; //Empty the cache
+    }, (1000*60*5));
+
+    this.fetchData();
+  },
+
   fetchData: function() {
 
     //Get the data from the cache if possible

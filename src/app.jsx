@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var Api = require('./utils/api');
 
-var query = 'http://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=imperial';
+var query = '/city=Denver,Seattle';
 var cities = [];
 var citiesWeather = [];
 var currentCity = 0;

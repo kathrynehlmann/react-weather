@@ -45,19 +45,19 @@ var bundler = watchify(browserify({
   fullPaths: true
 }));
 
-//Bundle tasks
+// Bundle tasks
 function bundle() {
-  return bundler
-    .bundle()
-    .on('error, notify')
-    .pipe(source('main.js'))
-    .pipe(gulp.dest('./'))
+    return bundler
+        .bundle()
+        .on('error', notify)
+        .pipe(source('main.js'))
+        .pipe(gulp.dest('./'))
 }
 bundler.on('update', bundle);
 
-//create bundle
+// Create bundle
 gulp.task('build', function() {
-  bundle()
+    bundle()
 });
 
 //Compile the SASS files from main.scss

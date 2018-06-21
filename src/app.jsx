@@ -55,19 +55,19 @@ var Weather = React.createClass({
 
   fetchData: function() {
 
-    //Get the data from the cache if possible
-    if (citiesWeather[currentCity])
-        this.updateData();
-    }
-    else {
-      //Request new Data to the API
-      Api.get(cities[currentCity]) {
-          .then(function(data) {
-            citiesWeather[currentCity] = data;
-            this.updateData();
-          }.bind(this));
+      //Get the data from the cache if possible
+      if (citiesWeather[currentCity]) {
+          this.updateData();
       }
-    },
+      else {
+        //Request new Data to the API
+        Api.get(cities[currentCity]) {
+            .then(function(data) {
+              citiesWeather[currentCity] = data;
+              this.updateData();
+            }.bind(this));
+        }
+      },
 
     updateData: function() {
 

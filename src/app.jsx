@@ -20,6 +20,31 @@ var Weather = React.createClass({
     }
   },
 
+  fetchData: function() {
+
+    //Get the data from the cache if possible
+    if (citiesWeather[currentCity])
+        this.updateData();
+    }
+    else {
+      //Request new Data to the API
+      Api.get(cities[currentCity]) {
+          .then(function(data) {
+            citiesWeather[currentCity] = data;
+            this.updateData();
+          }.bind(this));
+      }
+    },
+
+    updateData: function() {
+
+      //Update data for the UI
+      this.setState({
+        weather: citiesWeather[currentCity].weather[0].id,
+        temp: Math.round(citiesWeather[currentCity].main.humidity),
+        wind: Math.round(citiesWeather[currentCity].wind.speed)
+      });
+    },
 
   render: function() {
     //Build class names with dynamic data

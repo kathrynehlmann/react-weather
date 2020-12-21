@@ -23,7 +23,7 @@
     "gulp-server-livereload": "^1.9.2",
     "gulp-util": "^3.0.8",
     "gulp-watch": "^5.0.0",
-    "node-notifier": "^5.2.1",
+    "node-notifier": "^8.0.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "reactify": "^1.1.1",
